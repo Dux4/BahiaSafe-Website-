@@ -12,7 +12,6 @@ import {
 
 import securityImage from "./assets/Security.png";
 
-
 const Card = ({ children, className = "" }) => (
   <div className={`bg-white rounded-lg shadow-md ${className}`}>{children}</div>
 );
@@ -59,7 +58,7 @@ const BahiaSafe = () => {
       <header className="bg-white shadow-sm">
         <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold text-orange-500">BahiaSafe</h1>
-          <div className="space-x-4">
+          <div className="space-x-4 hidden md:flex">
             <a href="#" className="text-gray-600">
               Home
             </a>
@@ -78,11 +77,11 @@ const BahiaSafe = () => {
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center justify-between">
-        <div className="max-w-xl mb-8 md:mb-0">
-          <h2 className="text-4xl font-bold mb-4 text-center md:text-left">
+        <div className="max-w-xl mb-8 md:mb-0 text-center md:text-left">
+          <h2 className="text-4xl font-bold mb-4">
             Bem-vindo ao Bahia Safe: Conecte-se e Transforme a Segurança Pública
           </h2>
-          <p className="text-gray-600 mb-8 text-center md:text-left">
+          <p className="text-gray-600 mb-8">
             A plataforma colaborativa foca na segurança pública, centralizando
             informações, conectando cidadãos e autoridades para tornar nossa
             comunidade mais segura em prevenção.
@@ -97,12 +96,9 @@ const BahiaSafe = () => {
           <img
             src={securityImage}
             alt="Security"
-            className="rounded-lg"
+            className="rounded-lg w-full max-w-md h-auto"
             style={{
-              height: "80%", // 80% da altura do contêiner ou da viewport
-              width: "auto", // Largura ajustada proporcionalmente
-              maxHeight: "80vh", // Não ultrapassar 80% da altura da viewport
-              objectFit: "contain", // Manter proporção sem distorcer
+              objectFit: "contain", // Manter proporção
             }}
           />
         </div>
@@ -117,13 +113,12 @@ const BahiaSafe = () => {
           <span className="text-gray-500">Mapa de Calor</span>
         </div>
         <div className="flex justify-center">
-        <button
-  className="bg-black text-white px-6 py-3 rounded-md"
-  onClick={() => (window.location.href = "../pages/RegistrarOcorrencia.html")}
->
-  Registrar Ocorrência
-</button>
-
+          <button
+            className="bg-black text-white px-6 py-3 rounded-md"
+            onClick={() => (window.location.href = "../pages/RegistrarOcorrencia.html")}
+          >
+            Registrar Ocorrência
+          </button>
         </div>
       </section>
 
@@ -168,6 +163,28 @@ const BahiaSafe = () => {
         </div>
       </section>
 
+      {/* News Section */}
+      <section className="container mx-auto px-4 py-16">
+        <h3 className="text-2xl font-bold mb-8">Segurança em Foco: Notícias da Bahia</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {newsItems.map((item, index) => (
+            <Card key={index}>
+              <div className="p-0">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-48 object-cover rounded-t-lg"
+                />
+                <div className="p-4">
+                  <h4 className="font-bold mb-2">{item.title}</h4>
+                  <button className="text-orange-500">Ler mais</button>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </section>
+
       {/* Crime Statistics */}
       <section className="container mx-auto px-4 py-16">
         <h3 className="text-2xl font-bold mb-8 text-center">
@@ -185,24 +202,24 @@ const BahiaSafe = () => {
 
       {/* Footer */}
       <footer className="bg-orange-700 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold mb-4">BahiaSafe</h2>
-          <p className="mb-4">
-            Inscreva-se para ficar por dentro das novidades sobre a nossa
-            plataforma e últimas atualizações. Vamos nessa!
-          </p>
-          <div className="flex flex-col md:flex-row justify-center gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Digite seu email"
-              className="flex-1 px-4 py-2 rounded-md text-gray-800"
-            />
-            <button className="bg-black text-white px-6 py-2 rounded-md">
-              Inscrever
-            </button>
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-2xl font-bold mb-4">BahiaSafe</h2>
+            <p className="mb-4">
+              Inscreva-se para ficar por dentro das novidades sobre a nossa
+              plataforma e últimas atualizações. Vamos nessa!
+            </p>
+            <div className="flex flex-col md:flex-row justify-center gap-4 max-w-md mx-auto">
+              <input
+                type="email"
+                placeholder="Digite seu email"
+                className="flex-1 px-4 py-2 rounded-md text-gray-800"
+              />
+              <button className="bg-black text-white px-6 py-2 rounded-md">
+                Inscrever
+              </button>
+            </div>
           </div>
-        </div>
-      </footer>
+        </footer>
     </div>
   );
 };
